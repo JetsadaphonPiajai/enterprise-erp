@@ -71,6 +71,7 @@ const navSections: NavSection[] = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const allHrefs = navSections.flatMap((s) => s.items.map((i) => i.href));
 
   return (
     <aside className="w-64 border-r border-slate-200 bg-white flex flex-col h-screen fixed left-0 top-0 z-30 select-none">
@@ -95,7 +96,11 @@ export function Sidebar() {
             <div className="space-y-0.5 pt-1">
               {section.items.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                const isExact = pathname === item.href;
+                const isLongerMatch = allHrefs.some(
+                  (other) => other !== item.href && other.startsWith(item.href) && pathname.startsWith(other)
+                );
+                const isActive = isExact || (item.href !== "/" && pathname.startsWith(item.href) && !isLongerMatch);
 
                 return (
                   <Link
