@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ERP Enterprise | Wholesale & Retail Management",
@@ -18,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="th">
-      <body className={inter.className}>
+      <body className="font-sans antialiased bg-slate-50 text-slate-900">
         <div className="flex min-h-screen bg-slate-50">
           <Sidebar />
           <div className="flex-1 flex flex-col pl-64 min-w-0">
